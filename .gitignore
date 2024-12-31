@@ -10,3 +10,6 @@
 /bin
 fib_test.exe
 fib_test
+
+.zig-cache/
+zig-out/   
