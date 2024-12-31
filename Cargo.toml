@@ -1,5 +1,5 @@
 [package]
-name = "pony_test"
+name = "fib_test"
 version = "0.1.0"
 edition = "2021"
 
@@ -13,5 +13,5 @@ name = "fibonacci_benchmark"
 harness = false
 
 [[bin]]
-name = "pony_test"
+name = "fib_test"
 path = "src/main.rs"

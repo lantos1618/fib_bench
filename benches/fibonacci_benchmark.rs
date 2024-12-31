@@ -1,9 +1,9 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use pony_test::FibUtil;
+use fib_test::FibUtil;
 use std::collections::HashMap;
 
 fn fibonacci_benchmark(c: &mut Criterion) {
-    let n = 20; // Same as in Pony version
+    let n = 20; // Same as in fib version
 
     c.bench_function("Fib Rec (n=20)", |b| {
         b.iter(|| FibUtil::fib_rec(black_box(n)))

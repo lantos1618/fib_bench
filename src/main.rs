@@ -1,4 +1,4 @@
-use pony_test::FibUtil;
+use fib_test::FibUtil;
 
 fn main() {
     println!("Run 'cargo bench' to see the benchmark results!");

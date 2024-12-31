@@ -8,5 +8,5 @@
 
 # ignore binaries, .exe, etc.    
 /bin
-pony_test.exe
-pony_test
+fib_test.exe
+fib_test
