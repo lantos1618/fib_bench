@@ -1,0 +1,17 @@
+name = "fib_gleam"
+version = "1.0.0"
+description = "Fibonacci benchmarks in Gleam"
+
+# Repository where the code is hosted
+repository = { type = "github", user = "user", repo = "fib_bench" }
+
+# The Gleam version this project works with
+gleam = ">= 0.32.0"
+
+# Dependencies
+[dependencies]
+gleam_stdlib = "~> 0.32"
+gleam_erlang = "~> 0.23"
+
+[dev-dependencies]
+gleeunit = "~> 1.0"

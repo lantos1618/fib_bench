@@ -5,24 +5,28 @@ echo "======================================================="
 
 # Rust benchmark
 echo "\nRunning Rust benchmark..."
-cargo bench
+cd fib_rust && cargo bench && cd ..
 
 # Zig benchmark
 echo "\nRunning Zig benchmark..."
-zig build run
+cd fib_zig && zig build run && cd ..
 
 # Nim benchmark
 echo "\nRunning Nim benchmark..."
-nim c -r main.nim
+cd fib_nim && nim c -r main.nim && cd ..
 
 # C benchmark
 echo "\nRunning C benchmark..."
-make clean && make && make run                                  
+cd fib_c && make clean && make && make run && cd ..
 
 # Python benchmark
 echo "\nRunning Python benchmark..."
-python3 main.py
+cd fib_python && python3 main.py && cd ..
 
 # Pony benchmark
 echo "\nRunning Pony benchmark..."
-ponyc && ./fib_bench
+cd fib_pony && ponyc && ./fib_bench && cd ..
+
+# Gleam benchmark
+echo "\nRunning Gleam benchmark..."
+cd fib_gleam && gleam run && cd ..

@@ -1,0 +1,38 @@
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+main
+fib_bench
+
+# Debug files
+*.dSYM/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo 

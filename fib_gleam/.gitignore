@@ -1,0 +1,14 @@
+*.beam
+*.ez
+/build
+erl_crash.dump
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Gleam build
+/_build/
+/deps/

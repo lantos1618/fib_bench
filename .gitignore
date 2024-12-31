@@ -1,18 +1,9 @@
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
 
-
-
-# Added by cargo
-
-/target
-
-
-# ignore binaries, .exe, etc.    
-/bin
-fib_test.exe
-fib_test
-
-.zig-cache/
-zig-out/   
-fib_bench
-fib_bench.exe
-main
+# OS specific files
+.DS_Store
+Thumbs.db

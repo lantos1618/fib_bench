@@ -1,0 +1,13 @@
+# Pony compiler output
+fib_bench
+fib_bench.exe
+
+# Build artifacts
+*.o
+*.obj
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo 

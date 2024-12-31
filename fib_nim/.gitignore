@@ -1,0 +1,16 @@
+# Nim specific
+nimcache/
+nimblecache/
+htmldocs/
+
+# Binary output
+main
+main.exe
+fib_bench
+fib_bench.exe
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo 
