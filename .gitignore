@@ -13,3 +13,4 @@ fib_test
 
 .zig-cache/
 zig-out/   
+fib_bench

@@ -17,7 +17,7 @@ nim c -r main.nim
 
 # C benchmark
 echo "\nRunning C benchmark..."
-make benchmark
+make clean && make && make run                                  
 
 # Python benchmark
 echo "\nRunning Python benchmark..."
