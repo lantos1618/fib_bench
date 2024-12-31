@@ -1,4 +1,4 @@
-import std/[tables]
+import std/[tables, monotimes, times, stats, strformat, strutils]
 import benchy
 
 type USize = uint
@@ -50,18 +50,36 @@ when isMainModule:
   var cache = initTable[USize, USize]()
   var result: USize
   
+  template timeItNano(name: string, iterations: int, body: untyped) =
+    var samples: seq[float64] = @[]
+    var res: USize
+    echo "\nBenchmarking ", name, " (", iterations, " iterations)"
+    for i in 1..iterations:
+      let start = getMonoTime()
+      body
+      let duration = getMonoTime() - start
+      samples.add float64(duration.inNanoseconds)
+      res = result # Prevent optimization
+    
+    echo "\n", name, " Results:"
+    echo "  Mean:     ", formatFloat(mean(samples), format = ffDecimal, precision = 2), " ns"
+    echo "  Std Dev:  ", formatFloat(standardDeviation(samples), format = ffDecimal, precision = 2), " ns"
+    echo "  Min:      ", formatFloat(min(samples), format = ffDecimal, precision = 2), " ns"
+    echo "  Max:      ", formatFloat(max(samples), format = ffDecimal, precision = 2), " ns"
+    echo "  Result:   ", res
+  
   # Match Pony's iteration counts for each benchmark
-  timeIt "Recursive", 10_000:
+  timeItNano "Recursive", 10_000:
     result = fibRec(n)
   
-  timeIt "Recursive with Memoization", 3_000:
+  timeItNano "Recursive with Memoization", 3_000:
     cache.clear()
     result = fibRecMemo(n, cache)
   
-  timeIt "Iterative", 5_000_000:
+  timeItNano "Iterative", 5_000_000:
     result = fibLoop(n)
   
-  timeIt "Iterative with Array", 100_000:
+  timeItNano "Iterative with Array", 100_000:
     result = fibLoopMemory(n)
   
   # Print final result to prevent optimization

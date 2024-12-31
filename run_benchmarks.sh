@@ -15,7 +15,7 @@ cd $CWD/fib_zig && zig build run && cd ..
 
 # Nim benchmark
 echo "\nRunning Nim benchmark..."
-cd $CWD/fib_nim && nim c -r main.nim && cd ..
+cd $CWD/fib_nim && nim c -r -d:release main.nim && cd ..
 
 # C benchmark
 echo "\nRunning C benchmark..."
