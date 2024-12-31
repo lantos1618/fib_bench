@@ -55,25 +55,24 @@ class FibUtil:
 # Benchmarks
 ##################
 
-def run_benchmarks(n: int = 20, number: int = 1000):
+def run_benchmarks(n: int = 20):
     benchmarks = [
-        ("Fib Rec (n=20)", lambda: FibUtil.fib_rec(n)),
-        ("Fib Rec Memo (n=20)", lambda: FibUtil.fib_rec_memo(n)),
-        ("Fib Loop (n=20)", lambda: FibUtil.fib_loop(n)),
-        ("Fib Loop Memory (n=20)", lambda: FibUtil.fib_loop_memory(n))
+        ("Fib Rec", lambda: FibUtil.fib_rec(n), 10000),
+        ("Fib Rec Memo", lambda: FibUtil.fib_rec_memo(n), 3000),
+        ("Fib Loop", lambda: FibUtil.fib_loop(n), 5000000),
+        ("Fib Loop Memory", lambda: FibUtil.fib_loop_memory(n), 100000)
     ]
 
     results = []
-    for name, func in benchmarks:
-        time = timeit(func, number=number)
-        avg_time = time / number * 1e9  # Convert to nanoseconds
+    for name, func, iterations in benchmarks:
+        time = timeit(func, number=iterations)
+        avg_time = time / iterations * 1e9  # Convert to nanoseconds
         results.append((name, avg_time))
 
     # Print results
-    print("\nBenchmark Results:")
-    print("-" * 50)
+    print("\nRunning Fibonacci benchmarks (n=20)...\n")
     for name, avg_time in results:
-        print(f"{name:<25} {avg_time:>10.2f} ns/iter")
+        print(f"{name:<30} {avg_time:>6.0f} ns (min: {avg_time:>9.0f} ns) [iterations: {iterations}]")
 
 if __name__ == "__main__":
     run_benchmarks()
