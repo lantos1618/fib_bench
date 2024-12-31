@@ -27,6 +27,8 @@ The implementations are tested across different programming languages, with a sp
 - ⚡️ Zig (a systems programming language)
 - 👴 C (a low-level language)
 - 🐍 Python (a high-level language)
+- 🐹 Go (a high-level language)
+- ⭐ Gleam (a high-level language)
 
 ## 📈 Benchmarking
 
