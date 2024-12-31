@@ -25,4 +25,4 @@ python3 main.py
 
 # Pony benchmark
 echo "\nRunning Pony benchmark..."
-ponyc && ./fib_test 
+ponyc && ./fib_bench
