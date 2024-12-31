@@ -22,7 +22,11 @@ The project implements the Fibonacci sequence calculation using different approa
 
 The implementations are tested across different programming languages, with a special focus on:
 - 🐎 Pony (an actor-model based language)
-- 🔮 Other esoteric languages for comparison
+- 👑 Nim (a systems programming language)
+- 🦀 Rust (a systems programming language)
+- ⚡️ Zig (a systems programming language)
+- 👴 C (a low-level language)
+- 🐍 Python (a high-level language)
 
 ## 📈 Benchmarking
 
