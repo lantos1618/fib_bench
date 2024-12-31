@@ -11,3 +11,4 @@ fib_bench.exe
 .vscode/
 *.swp
 *.swo 
+fib_pony
