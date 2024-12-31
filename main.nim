@@ -1,12 +1,15 @@
-import std/[tables, times, strformat]
+import std/[tables]
+import benchy
+
+type USize = uint
 
 # Fibonacci utility functions
-proc fibRec(n: int): int =
+proc fibRec(n: USize): USize =
   if n < 2:
     return n
   return fibRec(n - 1) + fibRec(n - 2)
 
-proc fibRecMemo(n: int, cache: var Table[int, int]): int =
+proc fibRecMemo(n: USize, cache: var Table[USize, USize] = initTable[USize, USize]()): USize =
   if n < 2:
     return n
   
@@ -15,57 +18,51 @@ proc fibRecMemo(n: int, cache: var Table[int, int]): int =
   
   let val1 = fibRecMemo(n - 1, cache)
   let val2 = fibRecMemo(n - 2, cache)
-  let result = val1 + val2
+  result = val1 + val2
   cache[n] = result
   return result
 
-proc fibLoop(n: int): int =
+proc fibLoop(n: USize): USize =
   if n < 2:
     return n
   
-  var a = 0
-  var b = 1
-  for _ in 2..n:
+  var a: USize = 0
+  var b: USize = 1
+  for _ in 2'u..n:
     let tmp = a + b
     a = b
     b = tmp
   return b
 
-proc fibLoopMemory(n: int): int =
+proc fibLoopMemory(n: USize): USize =
   if n < 2:
     return n
   
-  var arr = newSeq[int](n + 1)
+  var arr = newSeq[USize](n.int + 1)
   arr[1] = 1
-  for i in 2..n:
+  for i in 2..n.int:
     arr[i] = arr[i-1] + arr[i-2]
-  return arr[n]
-
-# Benchmark helper
-proc benchmark(name: string, iterations: int, fn: proc()) =
-  let start = cpuTime()
-  for _ in 1..iterations:
-    fn()
-  let duration = cpuTime() - start
-  let avgTime = duration / float(iterations)
-  echo fmt"{name}: {avgTime:.6f} seconds per iteration (total: {duration:.6f}s for {iterations} iterations)"
+  return arr[n.int]
 
 # Main benchmarking
 when isMainModule:
-  const n = 20
-  const iterations = 1000
-
-  var cache = initTable[int, int]()
+  const n: USize = 20
+  var cache = initTable[USize, USize]()
+  var result: USize
   
-  benchmark("Fib Rec (n=20)", iterations):
-    discard fibRec(n)
+  # Match Pony's iteration counts for each benchmark
+  timeIt "Recursive", 10_000:
+    result = fibRec(n)
   
-  benchmark("Fib Rec Memo (n=20)", iterations):
+  timeIt "Recursive with Memoization", 3_000:
     cache.clear()
-    discard fibRecMemo(n, cache)
+    result = fibRecMemo(n, cache)
   
-  benchmark("Fib Loop (n=20)", iterations):
-    discard fibLoop(n)
+  timeIt "Iterative", 5_000_000:
+    result = fibLoop(n)
   
-  benchmark("Fib Loop Memory (n=20)", iterations):
-    discard fibLoopMemory(n) 
+  timeIt "Iterative with Array", 100_000:
+    result = fibLoopMemory(n)
+  
+  # Print final result to prevent optimization
+  echo "Final result: ", result 
