@@ -1,1 +1,12 @@
+
+
+
+# Added by cargo
+
+/target
+
+
+# ignore binaries, .exe, etc.    
+/bin
+pony_test.exe
 pony_test

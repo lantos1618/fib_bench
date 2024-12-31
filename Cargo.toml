@@ -1,0 +1,17 @@
+[package]
+name = "pony_test"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "fibonacci_benchmark"
+harness = false
+
+[[bin]]
+name = "pony_test"
+path = "src/main.rs"
