@@ -76,17 +76,17 @@ pub fn fib_loop_memory(n: Int) -> Int {
 }
 
 fn benchmark(name: String, iterations: Int, f: fn() -> a) -> Nil {
-  let start = erlang.system_time(erlang.Millisecond)
+  let start = erlang.system_time(erlang.Nanosecond)
   list.range(1, iterations)
   |> list.each(fn(_) { f() })
-  let end = erlang.system_time(erlang.Millisecond)
+  let end = erlang.system_time(erlang.Nanosecond)
   let duration = end - start
   let avg = int.to_float(duration) /. int.to_float(iterations)
   io.println(
     name
     <> ": "
     <> float.to_string(avg)
-    <> "ms (avg over "
+    <> "ns (avg over "
     <> int.to_string(iterations)
     <> " iterations)",
   )
