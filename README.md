@@ -4,10 +4,9 @@ This project explores the implementation and performance characteristics of the 
 
 ## 🎯 Purpose
 
-The main goal of this project is to analyze and compare the performance of different Fibonacci sequence implementations:
+Play around with different languages and paradigms (get the vibe of the language), Benchmarks are actually a really good way to introduce yourself to a language.
 
-- Play around with different languages and paradigms (get the vibe of the language), Benchmarks are actually a really good way to introduce yourself to a language.
-
+Each language we do 
 1. 🔄 Recursive Implementation
 2. ⚡ Iterative (Loop-based) Implementation
 3. 🧠 Memoization-based Implementation
