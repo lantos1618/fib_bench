@@ -15,22 +15,23 @@ primitive FibUtil
       fib_rec(n - 1) + fib_rec(n - 2)
     end
 
-  fun fib_rec_memo(n: USize, cache: Map[USize, USize] ref = Map[USize, USize]): USize =>
+  fun fib_rec_memo(n: USize, cache: Array[USize] ref = Array[USize].init(25, 0)): USize ? =>
     if n < 2 then
       n
     else
       try
-        cache(n)?
-      else
-        let val1 = fib_rec_memo(n - 1, cache)
-        let val2 = fib_rec_memo(n - 2, cache)
-        let result = val1 + val2
-        cache(n) = result
-        result
+        let cached = cache(n)?
+        if cached != 0 then
+          return cached
+        end
       end
+      
+      let val1 = fib_rec_memo(n - 1, cache)?
+      let val2 = fib_rec_memo(n - 2, cache)?
+      let result = val1 + val2
+      cache(n)? = result
+      result
     end
-
-
 
   fun fib_loop(n: USize): USize =>
     if n < 2 then
@@ -38,10 +39,12 @@ primitive FibUtil
     else
       var a: USize = 0
       var b: USize = 1
-      for _ in Range[USize](2, n + 1) do
+      var i: USize = 2
+      while i <= n do
         let tmp = a + b
         a = b
         b = tmp
+        i = i + 1
       end
       b
     end
@@ -52,8 +55,10 @@ primitive FibUtil
     else
       var arr = Array[USize].init(n + 1, 0)
       arr(1)? = 1
-      for i in Range[USize](2, n + 1) do
+      var i: USize = 2
+      while i <= n do
         arr(i)? = arr(i - 1)? + arr(i - 2)?
+        i = i + 1
       end
       arr(n)?
     end
@@ -68,8 +73,6 @@ class iso FibRecBenchmark is MicroBenchmark
   fun name(): String => "Fib Rec (n=20)"
 
   fun ref apply() =>
-    // We measure one iteration by computing fib_rec(_n).
-    // `DoNotOptimise[...]` is used to prevent the compiler from optimizing away.
     DoNotOptimise[USize](FibUtil.fib_rec(_n))
     DoNotOptimise.observe()
 
@@ -79,8 +82,10 @@ class iso FibRecMemoBenchmark is MicroBenchmark
   fun name(): String => "Fib Rec Memo (n=20)"
 
   fun ref apply() =>
-    DoNotOptimise[USize](FibUtil.fib_rec_memo(_n))
-    DoNotOptimise.observe()
+    try
+      DoNotOptimise[USize](FibUtil.fib_rec_memo(_n)?)
+      DoNotOptimise.observe()
+    end
 
 class iso FibLoopBenchmark is MicroBenchmark
   let _n: USize = 20

@@ -15,6 +15,7 @@ cd $CWD/fib_zig && zig build run && cd ..
 
 # Nim benchmark
 echo "\nRunning Nim benchmark..."
+# nim c -r -d:danger --mm:orc --passC:-march=native --passC:-flto --passC:-ffast-math --passL:-flto main.nim
 cd $CWD/fib_nim && nim c -r -d:release main.nim && cd ..
 
 # C benchmark
@@ -29,6 +30,11 @@ cd $CWD/fib_python && python3 main.py && cd ..
 echo "\nRunning Pony benchmark..."
 cd $CWD/fib_pony && ponyc && ./fib_pony && cd ..
 
+# Go benchmark
+echo "\nRunning Go benchmark..."
+cd $CWD/fib_go && go test -bench . && cd ..
+
 # Gleam benchmark
 echo "\nRunning Gleam benchmark..."
 cd $CWD/fib_gleam && gleam run && cd ..
+

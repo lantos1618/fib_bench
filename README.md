@@ -10,6 +10,8 @@ The main goal of this project is to analyze and compare the performance of diffe
 2. ⚡ Iterative (Loop-based) Implementation
 3. 🧠 Memoization-based Implementation
 
+The main focus is to have idiomatic implementations in each language. We can acknowledge that you can golf and golf but we want to see how fast you can go with just a straightforward implementation with the use of LLMs.
+
 ## 🛠️ Implementation Details
 
 The project implements the Fibonacci sequence calculation using different approaches to compare:
